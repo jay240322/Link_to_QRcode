@@ -4,8 +4,14 @@ button.addEventListener("click", () => {
   const url = document.getElementById("urlInput").value;
   const qrDiv = document.getElementById("qrcode");
 
-  if (!url.trim()) {
-    //for url check
+  let isValidUrl = true;
+  try {
+    new URL(url);
+  } catch (e) {
+    isValidUrl = false;
+  }
+
+  if (!url.trim() || !isValidUrl) {
     alert("Please enter a valid URL.");
     return;
   }
